@@ -8,7 +8,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U weer" ]
+      test: ["CMD-SHELL", "pg_isready -U weer"]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -16,7 +16,7 @@ services:
   redis:
     image: redis:7-alpine
     healthcheck:
-      test: [ "CMD", "redis-cli", "ping" ]
+      test: ["CMD", "redis-cli", "ping"]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -51,10 +51,10 @@ services:
   janitor:
     build: .
     image: weer
-    entrypoint: [ "node", "dist/janitor.js" ]
+    entrypoint: ["node", "dist/janitor.js"]
     working_dir: /app/packages/server
     restart: on-failure
-    profiles: [ "node" ]
+    profiles: ["node"]
     depends_on:
       postgres:
         condition: service_healthy
